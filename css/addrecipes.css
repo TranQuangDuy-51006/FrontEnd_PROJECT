@@ -417,7 +417,7 @@ input:focus {
   margin-bottom: 10px;
 }
 .fat {
-  border: 10px solid #f3f3f4;
+  border: 10px solid #db4965;
   border-radius: 50%;
   width: 78px;
   height: 78px;
@@ -435,7 +435,7 @@ input:focus {
   justify-content: center;
 }
 .protein {
-  border: 10px solid #f3f3f4;
+  border: 10px solid #17a589;
   border-radius: 50%;
   display: flex;
   width: 78px;
@@ -475,11 +475,7 @@ input:focus {
   height: 0;
   padding-bottom: 100%;
   border-radius: 50%;
-  background: conic-gradient(
-    #db4965 0% 2.2%,
-    #e8a878 2.2% 97.8%,
-    #17a589 97.8% 100%
-  );
+  background-color: #c4c4c4;
   position: relative;
 }
 .label {
@@ -679,6 +675,7 @@ input {
 }
 .table_body:hover .add.bg-none {
   background-color: #12896d;
+  cursor: pointer;
 }
 
 .table_body .row {
@@ -847,7 +844,12 @@ input {
   display: none;
 }
 
+.error {
+  border: 1px solid rgb(255, 0, 0);
+  background-color: #ffeaea;
+}
+
 input.error {
-  border: 2px solid red;
+  border: 1px solid rgb(255, 0, 0);
   background-color: #ffeaea;
 }

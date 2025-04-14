@@ -15,12 +15,17 @@ function renderRecipes(page) {
 
   const recipesDisplay = currentRecipes.map((value) => {
     return `
+    
         <div class="recipe-child">
+        <div style="width:40%; height: 100%; background-image: url('${value.img}');   background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;">
           <div class="box-community">
             <div class="community">
               <img src="../assets/icons/diversity_3.svg.png" alt="" />
               <p>Community Recipes</p>
             </div>
+          </div>
           </div>
           <div class="recipe-content">
             <div class="titlke">

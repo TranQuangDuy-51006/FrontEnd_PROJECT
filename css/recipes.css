@@ -220,10 +220,11 @@
 }
 
 .box-community {
-  width: 40%;
+  width: 100%;
 }
 
 .community {
+  background-color: white;
   cursor: pointer;
   display: inline-flex;
   align-items: center;

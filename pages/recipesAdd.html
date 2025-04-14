@@ -36,7 +36,7 @@
           <div>Recipes</div>
         </a>
       </div>
-      <a class="item sign-out" href="../index.html">
+      <a id="sign-out" class="item sign-out" href="../index.html">
         <img src="../assets/icons/Overlay.png" alt="" />
         <div>Sign out</div>
       </a>
@@ -88,8 +88,11 @@
             <p id="selected-category">New category</p>
             <ul class="dropdown hide" id="category-list">
               <li>Fruit</li>
-              <li>Vegetable</li>
+              <li>Vegetarian Dish</li>
               <li>Meat</li>
+              <li>Main Course</li>
+              <li>Snacks</li>
+              <li>Breakfast</li>
               <li>Drinks</li>
             </ul>
           </div>
@@ -119,35 +122,35 @@
               </div>
               <div class="tr">
                 <span>Description</span>
-                <input type="text" />
+                <input type="text" class="input-basic-information" />
                 <div class="img">
                   <img src="../assets/icons/edit.png" alt="edit" />
                 </div>
               </div>
               <div class="tr">
                 <span>Total time</span>
-                <input type="text" />
+                <input type="text" class="input-basic-information" />
                 <div class="img">
                   <img src="../assets/icons/edit.png" alt="edit" />
                 </div>
               </div>
               <div class="tr">
                 <span>Preparation time</span>
-                <input type="text" />
+                <input type="text" class="input-basic-information" />
                 <div class="img">
                   <img src="../assets/icons/edit.png" alt="edit" />
                 </div>
               </div>
               <div class="tr">
                 <span>Final weight</span>
-                <input type="text" />
+                <input type="text" class="input-basic-information" />
                 <div class="img">
                   <img src="../assets/icons/edit.png" alt="edit" />
                 </div>
               </div>
               <div class="tr">
                 <span>Portions</span>
-                <input type="text" />
+                <input type="text" class="input-basic-information" />
                 <div class="img">
                   <img src="../assets/icons/edit.png" alt="edit" />
                 </div>
@@ -165,40 +168,7 @@
           <div class="ingredients_list">
             <span>Ingredients</span>
             <p>Search and add ingredients to the recipe</p>
-            <div class="row1">
-              <div class="column1">
-                <p>
-                  1 serving of babyfood, water, bottled, GERBER, without added
-                  fluoride (113 g)
-                </p>
-                <div class="img">
-                  <div>
-                    <img src="../assets/icons/plus-green.png" alt="add" />
-                  </div>
-                  <input type="text" placeholder="Add new food equivalent" />
-                </div>
-              </div>
-              <div class="delete">
-                <img src="../assets/icons/delete.png" alt="delete" />
-              </div>
-            </div>
-            <div class="row1">
-              <div class="column1">
-                <p>
-                  1 serving of babyfood, water, bottled, GERBER, without added
-                  fluoride (113 g)
-                </p>
-                <div class="img">
-                  <div>
-                    <img src="../assets/icons/plus-green.png" alt="add" />
-                  </div>
-                  <input type="text" placeholder="Add new food equivalent" />
-                </div>
-              </div>
-              <div class="delete">
-                <img src="../assets/icons/delete.png" alt="delete" />
-              </div>
-            </div>
+
             <div class="ingredient-container">
               <div class="add-ingredient">
                 <img
@@ -269,7 +239,7 @@
             <p>Energy, macronutrients and fiber distribution</p>
             <div class="energy">
               <span>Energy</span>
-              <p><span>351</span> kcal</p>
+              <p><span id="energy-chart">0</span> kcal</p>
             </div>
             <div class="chart">
               <div class="nutrition">
@@ -277,7 +247,7 @@
                 <p>Fat</p>
               </div>
               <div class="nutrition">
-                <span class="carbohydrate">11g</span>
+                <span class="carbohydrate">0g</span>
                 <p>Carbohydrate</p>
               </div>
               <div class="nutrition">
@@ -285,7 +255,7 @@
                 <p>Protein</p>
               </div>
               <div class="nutrition">
-                <span class="fiber">1g</span>
+                <span class="fiber">0g</span>
                 <p>Fiber</p>
               </div>
             </div>
@@ -295,9 +265,9 @@
             <p>Macronutrients distribution of the recipe</p>
             <div class="chart-container">
               <div class="pie-chart">
-                <div class="label fat-label">38.3%</div>
-                <div class="label carb-label">96.9%</div>
-                <div class="label protein-label">12.8%</div>
+                <div class="label fat-label"></div>
+                <div class="label carb-label"></div>
+                <div class="label protein-label"></div>
               </div>
             </div>
             <div class="legend">
@@ -311,100 +281,100 @@
           <div class="table-container">
             <h2>Micronutrients per portion</h2>
             <p>Micronutrients distribution of the recipe</p>
-            <table>
-              <tr>
+            <table class="nutrition-table">
+              <tr class="sodium">
                 <td>Sodium</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="vitaminA">
                 <td>Vitamin A</td>
                 <td><span>4</span> ug</td>
               </tr>
-              <tr>
+              <tr class="vitaminB6">
                 <td>Vitamin B-6</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="vitaminB12">
                 <td>Vitamin B-12</td>
                 <td><span>0</span> ug</td>
               </tr>
-              <tr>
+              <tr class="vitaminC">
                 <td>Vitamin C</td>
                 <td><span>14</span> mg</td>
               </tr>
-              <tr>
+              <tr class="vitaminD">
                 <td>Vitamin D (D2 + D3)</td>
                 <td><span>0</span> ug</td>
               </tr>
-              <tr>
+              <tr class="vitaminE">
                 <td>Vitamin E</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="vitaminK">
                 <td>Vitamin K</td>
                 <td><span>1</span> ug</td>
               </tr>
-              <tr>
+              <tr class="sugars">
                 <td>Sugars</td>
                 <td><span>9</span> g</td>
               </tr>
-              <tr>
+              <tr class="calcium">
                 <td>Calcium</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="iron">
                 <td>Iron</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="magnesium">
                 <td>Magnesium</td>
                 <td><span>4</span> mg</td>
               </tr>
-              <tr>
+              <tr class="phosphorus">
                 <td>Phosphorus</td>
                 <td><span>10</span> mg</td>
               </tr>
-              <tr>
+              <tr class="potassium">
                 <td>Potassium</td>
                 <td><span>124</span> mg</td>
               </tr>
-              <tr>
+              <tr class="zinc">
                 <td>Zinc</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="copper">
                 <td>Copper</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="fluoride">
                 <td>Fluoride</td>
                 <td><span>49</span> ug</td>
               </tr>
-              <tr>
+              <tr class="manganese">
                 <td>Manganese</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="selenium">
                 <td>Selenium</td>
                 <td><span>0</span> ug</td>
               </tr>
-              <tr>
+              <tr class="thiamin">
                 <td>Thiamin</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="riboflavin">
                 <td>Riboflavin</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="niacin">
                 <td>Niacin</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="pantothenicAcid">
                 <td>Pantothenic acid</td>
                 <td><span>0</span> mg</td>
               </tr>
-              <tr>
+              <tr class="folateTotal">
                 <td>Folate, total</td>
                 <td><span>2</span> ug</td>
               </tr>
@@ -416,5 +386,6 @@
     <script src="../js/main.js"></script>
     <script src="../js/addrecipes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/proteced.js"></script>
   </body>
 </html>

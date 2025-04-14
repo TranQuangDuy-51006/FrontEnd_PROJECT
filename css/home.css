@@ -204,10 +204,11 @@
 }
 
 .box-community {
-  width: 40%;
+  width: 100%;
 }
 
 .community {
+  background-color: white;
   display: inline-flex;
   align-items: center;
   gap: 10px;

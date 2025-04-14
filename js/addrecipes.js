@@ -3,7 +3,7 @@ const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
 
 const recipesPerPage = 6;
 let currentPage = 1;
-
+let ingredientsArrayAdd = [];
 let filteredFoods = [...foods];
 
 const container = document.querySelector(".nutritional_table");
@@ -36,9 +36,9 @@ function renderFoods(page) {
           <span class="title-food-recipes">${food.name}</span>
           <span class="title-food-recipes">${food.source}</span>
           <div class="row_input">
-            <span>${food.quantity}</span>
-            <span>${food.serving}</span>
-            <span>${food.weight}</span>
+            <span>1</span>
+            <span>portion(${food.quantity}g)</span>
+            <span>${food.quantity}g</span>
           </div>
         </div>
         <div class="number">
@@ -54,7 +54,7 @@ function renderFoods(page) {
 
     container.appendChild(tableBody);
   });
-
+  addList();
   renderPagination();
 }
 
@@ -101,6 +101,7 @@ function renderPagination() {
         currentPage--;
         renderFoods(currentPage);
       }
+      addList();
     });
 
   paginationContainer
@@ -110,6 +111,7 @@ function renderPagination() {
         currentPage++;
         renderFoods(currentPage);
       }
+      addList();
     });
 
   paginationContainer.querySelectorAll(".page-number").forEach((el) => {
@@ -179,11 +181,6 @@ btnIngredient.onclick = () => {
     on = 1;
   }
 };
-const savedURL = localStorage.getItem("imgRecipes");
-if (savedURL) {
-  inputURL.value = savedURL;
-  boxImg.style.backgroundImage = `url('${inputURL.value}')`;
-}
 
 let img = "";
 addImg.onclick = () => {
@@ -196,7 +193,6 @@ addImg.onclick = () => {
       img = inputURL.value;
       inputURL.style.display = "none";
       addImg.style.display = "flex";
-      localStorage.setItem("imgRecipes", inputURL.value);
     }
   });
 };
@@ -220,7 +216,6 @@ let category = "";
 
 dropdown.addEventListener("click", function (e) {
   if (e.target.tagName === "LI") {
-    console.log(e.target.textContent);
     selectedP.textContent = e.target.textContent;
     category = e.target.textContent;
     dropdown.classList.add("hide");
@@ -233,10 +228,49 @@ const publish = document.getElementById("publish");
 
 publish.onclick = () => {
   const nameLogin = JSON.parse(localStorage.getItem("nameLogin")) || "";
+  const arrPublish = sumNutrition(ingredientsArrayAdd);
+  console.log(arrPublish);
+
   const inputBI = document.getElementsByClassName("input-basic-information");
   const name = inputBI[0].value.trim();
+  const description = inputBI[1].value.trim();
+  const totalTime = inputBI[2].value.trim();
+  const preparationTime = inputBI[3].value.trim();
+  const finalWeight = inputBI[4].value.trim();
+  const protions = inputBI[5].value.trim();
   let hasError = false;
-  if (!name) inputBI[0].classList.add("error"), (hasError = true);
+  if (!name) {
+    inputBI[0].classList.add("error");
+    hasError = true;
+  }
+  if (!description) {
+    inputBI[1].classList.add("error");
+    hasError = true;
+  }
+  if (!totalTime) {
+    inputBI[2].classList.add("error");
+    hasError = true;
+  }
+  if (!preparationTime) {
+    inputBI[3].classList.add("error");
+    hasError = true;
+  }
+  if (!finalWeight) {
+    inputBI[4].classList.add("error");
+    hasError = true;
+  }
+  if (!protions) {
+    inputBI[5].classList.add("error");
+    hasError = true;
+  }
+
+  console.log(selectedP.textContent);
+
+  if (selectedP.textContent === "New category") {
+    addCategory.classList.add("error");
+    hasError = true;
+  }
+
   if (hasError) {
     Swal.fire({
       title: "Vui lòng nhập đầy đủ và hợp lệ các trường bắt buộc.",
@@ -247,20 +281,61 @@ publish.onclick = () => {
   }
   const foodRecipes = {
     name,
+    description,
+    totalTime,
+    preparationTime,
+    finalWeight,
+    protions,
     category,
-    energy: 0,
-    fat: 0,
-    carbohydrate: 0,
-    protein: 0,
+    energy: arrPublish.energy,
+    fat: arrPublish.fat,
+    carbohydrate: arrPublish.carbohydrate,
+    protein: arrPublish.protein,
     author: nameLogin,
     likes: 0,
-    img,
+    img: inputURL.value,
+    cholesterol: arrPublish.cholesterol,
+    fiber: arrPublish.fiber,
+    sodium: arrPublish.sodium,
+    water: arrPublish.water,
+    vitaminA: arrPublish.vitaminA,
+    vitaminB6: arrPublish.vitaminB6,
+    vitaminB12: arrPublish.vitaminB12,
+    vitaminC: arrPublish.vitaminC,
+    vitaminD: arrPublish.vitaminD,
+    vitaminE: arrPublish.vitaminE,
+    vitaminK: arrPublish.vitaminK,
+    starch: arrPublish.starch,
+    lactose: arrPublish.lactose,
+    alcohol: arrPublish.alcohol,
+    caffeine: arrPublish.caffeine,
+    sugars: arrPublish.sugars,
+    calcium: arrPublish.calcium,
+    iron: arrPublish.iron,
+    magnesium: arrPublish.magnesium,
+    phosphorus: arrPublish.phosphorus,
+    potassium: arrPublish.potassium,
+    zinc: arrPublish.zinc,
+    copper: arrPublish.copper,
+    fluoride: arrPublish.fluoride,
+    manganese: arrPublish.manganese,
+    selenium: arrPublish.selenium,
+    thiamin: arrPublish.thiamin,
+    riboflavin: arrPublish.riboflavin,
+    niacin: arrPublish.niacin,
+    pantothenicAcid: arrPublish.pantothenicAcid,
+    folateTotal: arrPublish.folateTotal,
+    folicAcid: arrPublish.folicAcid,
+    fattyTrans: arrPublish.fattyTrans,
+    fattySaturated: arrPublish.fattySaturated,
+    fattyMono: arrPublish.fattyMono,
+    fattyPoly: arrPublish.fattyPoly,
+    chloride: arrPublish.chloride,
   };
-
   recipes.unshift(foodRecipes);
   localStorage.setItem("recipes", JSON.stringify(recipes));
   Swal.fire({
-    title: "Thêm món ăn thành công!",
+    title: "Đăng thành công!",
     icon: "success",
     draggable: true,
   }).then(() => {
@@ -268,3 +343,78 @@ publish.onclick = () => {
     window.location.href = "../pages/recipes.html";
   });
 };
+
+function addList() {
+  const addIngredients = document.getElementsByClassName("add");
+  for (let i in addIngredients) {
+    addIngredients[i].onclick = () => {
+      ingredientsArrayAdd.unshift(foods[i]);
+      const sumIngredients = sumNutrition(ingredientsArrayAdd);
+
+      const fatChart = document.querySelector(".nutrition .fat");
+      const carbohydrateChart = document.querySelector(
+        ".nutrition .carbohydrate"
+      );
+      const proteinChart = document.querySelector(".nutrition .protein");
+      const fiberChart = document.querySelector(".nutrition .fiber");
+      const energyChart = document.getElementById("energy-chart");
+
+      energyChart.innerText = sumIngredients.energy;
+      fatChart.innerText = sumIngredients.fat;
+      carbohydrateChart.innerText = sumIngredients.carbohydrate;
+      proteinChart.innerText = sumIngredients.protein;
+      fiberChart.innerText = sumIngredients.fiber;
+      updatePieChart(
+        sumIngredients.fat,
+        sumIngredients.carbohydrate,
+        sumIngredients.protein
+      );
+      for (const key in sumIngredients) {
+        const row = document.querySelector(`.nutrition-table .${key} span`);
+        if (row) {
+          row.innerText = sumIngredients[key];
+        }
+      }
+    };
+  }
+}
+
+function sumNutrition(array) {
+  const excludedKeys = [
+    "author",
+    "likes",
+    "quantity",
+    "name",
+    "category",
+    "source",
+  ];
+  const total = {};
+
+  array.forEach((item) => {
+    for (const key in item) {
+      if (!excludedKeys.includes(key) && typeof item[key] === "number") {
+        if (!total[key]) total[key] = 0;
+        total[key] += item[key];
+      }
+    }
+  });
+
+  return total;
+}
+
+function updatePieChart(fat, carb, protein) {
+  const total = fat + carb + protein;
+  const fatPercent = (fat / total) * 100;
+  const carbPercent = (carb / total) * 100;
+  const proteinPercent = (protein / total) * 100;
+
+  const gradient = `
+    conic-gradient(#db4965 0% ${fatPercent}%,
+     #e8a878 ${fatPercent}% ${fatPercent + carbPercent}%,
+      #17a589 ${fatPercent + carbPercent}% 100%
+    )
+  `;
+
+  const pieChart = document.querySelector(".pie-chart");
+  pieChart.style.background = gradient;
+}
